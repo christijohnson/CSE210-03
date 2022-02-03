@@ -1,0 +1,39 @@
+from word_generator import Word_Generator
+import time
+from time import sleep
+name = input("Enter Your Name: ")
+print(f"Hello {name.title()}")
+print("Get ready!!") 
+print ("")
+time.sleep(1)
+print ("Let's play Jumpman!")
+time.sleep(0.5)
+
+class Game_element:
+
+    def __init__(self):
+        self._word = Word_Generator()
+
+word = "python"
+jumpman_word = ''
+chance = 10
+while chance > 0:         
+    failed = 0            
+    for letter in word:      
+        if letter in jumpman_word:    
+            print (letter)   
+        else:
+            print( "_")    
+            failed += 1   
+    if failed == 0:        
+        print(f"You Won, Congratulations, {name.title()}!" ) 
+        break             
+    guess = input("Guess a letter:").strip().lower()
+    jumpman_word = jumpman_word+guess                    
+    if guess not in word:  
+        chance -= 1       
+        print ("Wrong guess! Try again")
+        print (f"You have {chance} chances reminding.")
+        if chance == 0:           
+            print ("You Lose! Better Luck Next Time" )
+         
