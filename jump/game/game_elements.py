@@ -1,36 +1,42 @@
-#game elements 
-#game elements 
-import random
+from game import word_generator
+import time
+from time import sleep
+name = input("Enter Your Name: ")
+print(f"Hello {name.title()}")
+print("Get ready!!") 
+print ("")
+time.sleep(1)
+print ("Let's play Jumpman!")
+time.sleep(0.5)
 
-word = ["the","bird","antelope"]
+class Game_element:
 
-word= random.choice(word)
-print()
-for letter in range (0,len(word)):
-    jumpman_word = []
-    letter = "_ "
-    print (letter, end='')
-    jumpman_word.append(letter)
+    def __init__(self):
+        self.word = word_generator.Word_Generator()
 
-
-selected_word = word
-print()
-player_choice = input("What letter do you want to choose? ")
-print()
-
-# if player_choice in word:
-#     print("correct")
-#     jumpman_word.append(player_choice)
-# else: 
-#     print ("incorrect")
-
-# print(jumpman_word)
-
-
-
-# index_value = selected_word.index(player_choice)
-# if index_value == selected_word.index(player_choice):
-#     if player_choice in selected_word:
-#         print("correct")
-# elif player_choice not in selected_word:
-#     print("incorrect")
+    def get_game_elements(self):
+        jumpman_word = ''
+        chance = 10
+        while chance > 0:         
+            failed = 0            
+            for letter in self.word.get_word(self):      
+                if letter in jumpman_word:    
+                    return letter  
+                else:
+                    print( "_")    
+                    failed += 1   
+            if failed == 0:        
+                winning_message = (f"You Won, Congratulations, {name.title()}!" ) 
+                return winning_message
+                           
+            guess = input("Guess a letter:").strip().lower()
+            jumpman_word = jumpman_word+guess                    
+            if guess not in self.word.get_word(self):  
+                chance -= 1 
+                wrong_message = "Wrong guess! Try again"
+                chances_reminding = (f"You have {chance} chances reminding.")
+                return wrong_message,chances_reminding
+            elif chance == 0:           
+                game_over = "You Lose! Better Luck Next Time"
+                return game_over
+                
