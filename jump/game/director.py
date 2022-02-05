@@ -48,7 +48,8 @@ class Director:
             self (Director): an instance of Director."""
 
         guess = self._terminal_services.read_letters('Guess a letter [a-z]: ')
-        self._game_elements.random_word(guess)
+        # self._game_elements.random_word(guess)
+        self._game_elements.guessed_letter(guess)
 
     def _do_updates(self):
         """Checks if letters guessed are in the hidden word.
