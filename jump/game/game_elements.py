@@ -13,30 +13,21 @@ class Game_element:
 
     def __init__(self):
         self.word = word_generator.Word_Generator()
-
-    def get_game_elements(self):
-        jumpman_word = ''
-        chance = 10
-        while chance > 0:         
-            failed = 0            
-            for letter in self.word.get_word(self):      
-                if letter in jumpman_word:    
+        self.player_guess = ""
+        self.chances = 6 #let's update the real number
+      
+    def jumpman_word(self, letter):
+        for letter in self.word:      
+                if letter in self.word:    
                     return letter  
                 else:
-                    print( "_")    
-                    failed += 1   
-            if failed == 0:        
-                winning_message = (f"You Won, Congratulations, {name.title()}!" ) 
-                return winning_message
-                           
-            guess = input("Guess a letter:").strip().lower()
-            jumpman_word = jumpman_word+guess                    
-            if guess not in self.word.get_word(self):  
-                chance -= 1 
-                wrong_message = "Wrong guess! Try again"
-                chances_reminding = (f"You have {chance} chances reminding.")
-                return wrong_message,chances_reminding
-            elif chance == 0:           
-                game_over = "You Lose! Better Luck Next Time"
-                return game_over
+                    return("_")  
+
+    def player_guess(self, jumpman_word, letter):          
+        if letter not in self.word.get_word(self):  
+            self.chances -= 1 
+            wrong_message = "Wrong guess! Try again"
+            return wrong_message 
+        elif letter in self.word.get_word(self):
+            return jumpman_word+letter
                 
