@@ -36,10 +36,10 @@ class Director:
         
         Args:
             self (Director): an instance of Director."""
-        while self.is_playing:
-            self.get_inputs()
-            self.do_updates()
-            self.do_outputs()
+        while self._is_playing:
+            self._get_inputs()
+            self._do_updates()
+            self._do_outputs()
             
     def _get_inputs(self):
         """Gets the guesses from the player
@@ -57,7 +57,7 @@ class Director:
         Args:
             self (Director): an instance of Director."""
 
-        self._game_elements._jump_word()
+        self._game_elements.check_guess()
 
     def _do_outputs(self):
         """Displays jumper image and any correctly guessed letters in the hidden word.
@@ -65,7 +65,7 @@ class Director:
         Args:
             self (Director): an instance of Director."""
 
-        display_word = self._game_elements.random_word()
+        display_word = self._game_elements.jumpman_word()
         self._terminal_services.write_text(display_word)
 
         display_jumper = self._draw_image.display_image()
