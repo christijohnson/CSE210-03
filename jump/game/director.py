@@ -49,7 +49,7 @@ class Director:
 
         guess = self._terminal_services.read_letters('Guess a letter [a-z]: ')
         # self._game_elements.random_word(guess)
-        self._game_elements.guessed_letter(guess)
+        self._game_elements.player_guess(guess)
 
     def _do_updates(self):
         """Checks if letters guessed are in the hidden word.
@@ -57,7 +57,7 @@ class Director:
         Args:
             self (Director): an instance of Director."""
 
-        self._game_elements._check_letters()
+        self._game_elements._jump_word()
 
     def _do_outputs(self):
         """Displays jumper image and any correctly guessed letters in the hidden word.
