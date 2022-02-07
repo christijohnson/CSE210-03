@@ -36,6 +36,7 @@ class Director:
         
         Args:
             self (Director): an instance of Director."""
+        self._game_elements.jumpman_word()
         while self._is_playing:
             self._get_inputs()
             self._do_updates()
@@ -46,18 +47,22 @@ class Director:
         
         Args:
             self (Director): an instance of Director."""
-
+        # word_to_guess = self._game_elements.word
+        # self._terminal_services.write_text(word_to_guess)
         guess = self._terminal_services.read_letters('Guess a letter [a-z]: ')
-        # self._game_elements.random_word(guess)
-        self._game_elements.player_guess(guess)
+        self._game_elements.get_guess(guess)
+        
 
     def _do_updates(self):
         """Checks if letters guessed are in the hidden word.
 
         Args:
             self (Director): an instance of Director."""
-
+        
         self._game_elements.check_guess()
+        self._game_elements.word_complete()
+        
+        
 
     def _do_outputs(self):
         """Displays jumper image and any correctly guessed letters in the hidden word.
@@ -65,14 +70,18 @@ class Director:
         Args:
             self (Director): an instance of Director."""
 
-        display_word = self._game_elements.jumpman_word()
+        chances = self._game_elements.chances
+        self._terminal_services.write_text(chances)
+
+        display_word = self._game_elements.word_to_guess
         self._terminal_services.write_text(display_word)
 
         display_jumper = self._draw_image.display_image()
         self._terminal_services.write_draw(display_jumper)
 
-        if self._game_elements.word_complete():
+        if self._game_elements.word_complete() == True:
             self._terminal_services.write_text('Congrats, you won!')
             self._is_playing = False
-#     def run_game_element(): = Game_element()
-# run_game_element.get_game_elements()
+        elif chances == 0:
+            self._terminal_services.write_text('Sorry, you did not make it!')
+            self._is_playing = False

@@ -5,7 +5,8 @@ import random
 class Word_Generator:
     # add the variable and store in a list
     def __init__(self):
-        self._word = []
+        self._word = ''
+
 
     def get_word(self):  
         # random word from candidates  
