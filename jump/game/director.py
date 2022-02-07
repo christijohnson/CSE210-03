@@ -75,7 +75,7 @@ class Director:
         display_word = self._game_elements.word_to_guess
         self._terminal_services.write_text(display_word)
 
-        display_jumper = self._draw_image.display_image()
+        display_jumper = self._draw_image.display_image(chances)
         self._terminal_services.write_draw(display_jumper)
 
         if self._game_elements.word_complete() == True:

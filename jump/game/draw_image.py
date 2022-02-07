@@ -1,35 +1,72 @@
-class Jumper:
+from game.game_elements import Game_element
 
+
+class Jumper:
     def __init__(self):
         """This is the constructor method and we are building the image here and set it as a list"""
-        self.jumper_image = [
-            "    ___    ",
-            "   /___\   ",
-            "   \   /   ",
-            "    \ /    ",
-            "     o     ",
-            "    /|\    ",
-            "    / \    ",
-            "           ",
-            "^^^^^^^^^^^",
-            ]  
-    def display_image(self):
-        """This is how the user will see the image correctly through the loop"""
-        for image in self.jumper_image:
-            print(image)   
 
-    def delete_line(self):
-        """ This function is supposed to delete the first line of the jumper_image"""
-        self.jumper_image.pop(0)
+        self._game_elements = Game_element()
+        self.chances = self._game_elements.chances
+
+    def display_image(self, chances):
+        """ This is the list where we are taking the chances from the Game_element class
+        as an index, so we can take the correct picture"""
         
-    def jumper_is_dead(self):
-        """This is only used when the player has not guessed the word for 5 attempts"""
         self.jumper_image = [
-            "     x     ",
-            "    /|\    ",
-            "    / \    ",
-            "           ",
-            "^^^^^^^^^^^",
-            ] 
-        for image in self.jumper_image:
-            print(image) 
+        """         
+                  
+                  
+                   
+                 x     
+                /|\    
+                / \    
+                       
+            ^^^^^^^^^^^ """,
+        """         
+                  
+                  
+                   
+                 o     
+                /|\    
+                / \    
+                       
+            ^^^^^^^^^^^ """,
+        """         
+                  
+                  
+                \ /    
+                 o     
+                /|\    
+                / \    
+                       
+            ^^^^^^^^^^^ """,
+        """         
+                 
+               \   /   
+                \ /    
+                 o     
+                /|\    
+                / \    
+                       
+            ^^^^^^^^^^^ """,
+        """         
+               /___\   
+               \   /   
+                \ /    
+                 o     
+                /|\    
+                / \    
+                       
+            ^^^^^^^^^^^ """,
+        """ 
+                ___    
+               /___\   
+               \   /   
+                \ /    
+                 o     
+                /|\    
+                / \    
+                       
+            ^^^^^^^^^^^ """,
+            ]
+        return self.jumper_image[chances]

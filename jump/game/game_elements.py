@@ -30,7 +30,7 @@ class Game_element:
             """
         word = self.chose_word.get_word()
         self.word = word
-        self.word_to_guess = '_ ' * len(word)
+        self.word_to_guess = '_' * len(word)
         return self.word_to_guess
 
 
