@@ -47,8 +47,7 @@ class Director:
         
         Args:
             self (Director): an instance of Director."""
-        # word_to_guess = self._game_elements.word
-        # self._terminal_services.write_text(word_to_guess)
+        
         guess = self._terminal_services.read_letters('Guess a letter [a-z]: ')
         self._game_elements.get_guess(guess)
         
@@ -69,9 +68,9 @@ class Director:
 
         Args:
             self (Director): an instance of Director."""
-
+        word_to_guess = self._game_elements.word
         chances = self._game_elements.chances
-        self._terminal_services.write_text(chances)
+        self._terminal_services.write_text(f'Number of chances left: {chances}')
 
         display_word = self._game_elements.word_to_guess
         self._terminal_services.write_text(display_word)
@@ -83,5 +82,5 @@ class Director:
             self._terminal_services.write_text('Congrats, you won!')
             self._is_playing = False
         elif chances == 0:
-            self._terminal_services.write_text('Sorry, you did not make it!')
+            self._terminal_services.write_text(f'Sorry, you did not make it! The word was {word_to_guess}.')
             self._is_playing = False
