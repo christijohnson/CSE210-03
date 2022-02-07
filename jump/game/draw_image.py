@@ -16,7 +16,7 @@ class Jumper:
     def display_image(self):
         """This is how the user will see the image correctly through the loop"""
         for image in self.jumper_image:
-            print(image) 
+            print(image)   
 
     def delete_line(self):
         """ This function is supposed to delete the first line of the jumper_image"""
