@@ -50,8 +50,7 @@ class Game_element:
                 for index in indices:
                     word_as_list[index] = self.player_guess
                 # This is to bring the single letters back into the word.
-                self.word_to_guess = "".join(word_as_list)
-                
+                self.word_to_guess = "".join(word_as_list)               
             return self.word_to_guess
 
 

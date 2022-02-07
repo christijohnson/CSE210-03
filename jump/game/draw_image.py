@@ -8,10 +8,10 @@ class Jumper:
         self._game_elements = Game_element()
         self.chances = self._game_elements.chances
 
-    def display_image(self, chances):
+    def _display_image(self, chances):
         """ This is the list where we are taking the chances from the Game_element class
         as an index, so we can take the correct picture"""
-        
+
         self.jumper_image = [
         """         
                   
