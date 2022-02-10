@@ -1,5 +1,4 @@
 from game.game_elements import Game_element
-from game.word_generator import Word_Generator
 from game.terminal_service import TerminalService
 from game.draw_image import Jumper
 
@@ -27,7 +26,6 @@ class Director:
 
         self._draw_image = Jumper()
         self._game_elements = Game_element()
-        self._word_generator = Word_Generator()
         self._terminal_services = TerminalService()
         self._is_playing = True
 
@@ -68,12 +66,14 @@ class Director:
 
         Args:
             self (Director): an instance of Director."""
-        word_to_guess = self._game_elements.word
+        word_to_guess = self._game_elements._word
         chances = self._game_elements.chances
         self._terminal_services.write_text(f'Number of chances left: {chances}')
 
-        display_word = self._game_elements.word_to_guess
+        display_word = self._game_elements._word_to_guess
         self._terminal_services.write_text(display_word)
+
+        self._game_elements.display_word()
 
         display_jumper = self._draw_image._display_image(chances)
         self._terminal_services.write_draw(display_jumper)
