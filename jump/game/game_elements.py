@@ -46,7 +46,7 @@ class Game_element:
         candidates = [
             'cloud', 'hydrogen', 'laugh', 'smile', 'toothbrush', 'class', 'game', 'sunshine', 'galaxy', 'telephone'
             'puzzle', 'assignment', 'vacation', 'awkward', 'blizzard', 'fuchsia', 'jovial', 'mnemonic', 'transplant',
-            'waltz', 'stretch', 'zombie', 'pineapple', 'beach', 'cello', 'ticket', 'spinkler', 'lighthouse',
+            'waltz', 'stretch', 'zombie', 'pineapple', 'beach', 'cello', 'ticket', 'sprinkler', 'lighthouse',
             'suitcase', 'coconut', 'shark', 'sunflower', 'password', 'landscape', 'drawback', 'gasoline',
             'shampoo', 'chess', 'picnic', 'applause', 'nightmare', 'loveseat', 'charger', 'cabin'
         ]
