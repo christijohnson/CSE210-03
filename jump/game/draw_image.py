@@ -1,72 +1,34 @@
-from game.game_elements import Game_element
-
+from game.terminal_service import TerminalService
 
 class Jumper:
     def __init__(self):
         """This is the constructor method and we are building the image here and set it as a list"""
+        self._terminal_service = TerminalService()
+        self._jumper = [
+            '    ___    ',
+            '   /___\   ',
+            '   \   /   ',
+            '    \ /    ',
+            '     o     ',
+            '    /|\    ',
+            '    / \    ',
+            '',           
+            '^^^^^^^^^^^'
+        ]
 
-        self._game_elements = Game_element()
-        self.chances = self._game_elements.chances
+    def draw_jumper(self):
+        for i in self._jumper:
+            self._terminal_service.write_text(i)
 
-    def _display_image(self, chances):
-        """ This is the list where we are taking the chances from the Game_element class
-        as an index, so we can take the correct picture"""
 
-        self.jumper_image = [
-        """         
-                  
-                  
-                   
-                 x     
-                /|\    
-                / \    
-                       
-            ^^^^^^^^^^^ """,
-        """         
-                  
-                  
-                   
-                 o     
-                /|\    
-                / \    
-                       
-            ^^^^^^^^^^^ """,
-        """         
-                  
-                  
-                \ /    
-                 o     
-                /|\    
-                / \    
-                       
-            ^^^^^^^^^^^ """,
-        """         
-                 
-               \   /   
-                \ /    
-                 o     
-                /|\    
-                / \    
-                       
-            ^^^^^^^^^^^ """,
-        """         
-               /___\   
-               \   /   
-                \ /    
-                 o     
-                /|\    
-                / \    
-                       
-            ^^^^^^^^^^^ """,
-        """ 
-                ___    
-               /___\   
-               \   /   
-                \ /    
-                 o     
-                /|\    
-                / \    
-                       
-            ^^^^^^^^^^^ """,
-            ]
-        return self.jumper_image[chances]
+    def remove_parachute_piece(self):
+        self._jumper.pop(0)
+        
+
+    def parachute_gone(self):
+        self._jumper[0] = '     X     '
+        
+
+    def has_parachute(self):
+        return len(self._jumper) >= 6
+        
