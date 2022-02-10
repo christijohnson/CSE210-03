@@ -1,5 +1,4 @@
 from game.game_elements import Game_element
-from game.word_generator import Word_Generator
 from game.terminal_service import TerminalService
 from game.draw_image import Jumper
 
@@ -27,7 +26,6 @@ class Director:
 
         self._draw_image = Jumper()
         self._game_elements = Game_element()
-        self._word_generator = Word_Generator()
         self._terminal_services = TerminalService()
         self._is_playing = True
 
@@ -38,9 +36,10 @@ class Director:
             self (Director): an instance of Director."""
         self._game_elements.jumpman_word()
         while self._is_playing:
+            self._do_outputs()
             self._get_inputs()
             self._do_updates()
-            self._do_outputs()
+            
             
     def _get_inputs(self):
         """Gets the guesses from the player
@@ -59,28 +58,29 @@ class Director:
             self (Director): an instance of Director."""
         
         self._game_elements.check_guess()
-        self._game_elements.word_complete()
-        
-        
+
+        if self._game_elements.wrong_guess():
+            if self._draw_image.has_parachute():
+                self._draw_image.remove_parachute_piece()
+            else:
+                self._draw_image.parachute_gone()
+                self._draw_image.draw_jumper()
+                self._is_playing = False
+
+
+        if self._game_elements.word_complete():
+            self._is_playing = False
+
+
 
     def _do_outputs(self):
         """Displays jumper image and any correctly guessed letters in the hidden word.
 
         Args:
             self (Director): an instance of Director."""
-        word_to_guess = self._game_elements.word
-        chances = self._game_elements.chances
-        self._terminal_services.write_text(f'Number of chances left: {chances}')
 
-        display_word = self._game_elements.word_to_guess
-        self._terminal_services.write_text(display_word)
-
-        display_jumper = self._draw_image._display_image(chances)
-        self._terminal_services.write_draw(display_jumper)
-
-        if self._game_elements.word_complete() == True:
-            self._terminal_services.write_text('Congrats, you won!')
-            self._is_playing = False
-        elif chances == 0:
-            self._terminal_services.write_text(f'Sorry, you did not make it! The word was {word_to_guess}.')
-            self._is_playing = False
+        self._game_elements.display_word()
+        print()
+        print()
+        self._draw_image.draw_jumper()
+        
