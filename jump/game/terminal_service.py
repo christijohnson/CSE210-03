@@ -37,4 +37,12 @@ class TerminalService:
         """
 
         print(drawing)
+
+    def write_single_line(self, text):
+        """Displays the single line statement
         
+            Args: 
+            self (TerminalService): An instance of TerminalService.
+            text (string): The text to display.
+            """
+        print(text, end ="")
