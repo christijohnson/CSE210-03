@@ -68,6 +68,9 @@ class Director:
                 self._is_playing = False
 
         if self._game_elements.word_complete():
+            self._game_elements.display_word()
+            print()
+            self._draw_image.draw_jumper()
             self._is_playing = False
 
 
